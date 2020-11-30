@@ -1,13 +1,22 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 
-const reviewSchema = mongoose.Schema({});
+const reviewSchema = mongoose.Schema({
+  name: { type: String, required: true },
+  rating: { type: Number, required: true },
+  comment: { type: String, required: true },
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: "User",
+  },
+});
 
 const businessSchema = {
   user: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
-    ref: User,
+    ref: "User",
   },
   name: {
     type: String,
@@ -32,3 +41,5 @@ const businessSchema = {
     default: 0,
   },
 };
+
+const Business = mongoose.model("Business", businessSchema);
