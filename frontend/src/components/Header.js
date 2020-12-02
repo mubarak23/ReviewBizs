@@ -4,18 +4,14 @@ import { Nav, Navbar, Container } from "react-bootstrap";
 const Header = () => {
   return (
     <header>
-      <Navbar bg="primary" variant="primary" expand="bg" collapseOnSelect>
+      <Navbar bg="dark" variant="dark" expand="bg" collapseOnSelect>
         <Container>
           <Navbar.Brand>ReviewBizs</Navbar.Brand>
-          <Navbar.Toggle arial-aria-controls="basic-navbar-nav" />
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navar-nav">
-            <Nav>
-              <Nav.Link>
-                <i className="fa fa-shopping-cart"></i>Reviews
-              </Nav.Link>
-              <Nav.Link>
-                <i className="fa fa-user"></i>SignIn
-              </Nav.Link>
+            <Nav className="ml-auto">
+              <Nav.Link>Reviews</Nav.Link>
+              <Nav.Link>SignIn</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
