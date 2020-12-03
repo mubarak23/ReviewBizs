@@ -55,4 +55,4 @@ const businesses = [
   },
 ];
 
-export default products;
+export default businesses;

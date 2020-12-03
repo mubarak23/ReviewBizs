@@ -17,6 +17,8 @@
   },
   "scripts": {
     "start": "node backend/server",
+    "data:import": "node backend/seeder",
+    "data:destroy": "node backend/seeder -d",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Mubarak Aminu",

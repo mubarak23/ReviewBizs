@@ -20,18 +20,11 @@ const userSchema = mongoose.Schema({
     required: true,
     default: false,
   },
-});
-
-userSchema.methods.matchPassword = async function (enteredPassword) {
-  return await bcrypt.compare(enteredPassword, this.password);
-};
-
-userSchema.pre("save", async function (next) {
-  if (!thisisModefied("password")) {
-    next();
-  }
-  const salt = await bcrypt.genSalt(10);
-  this.password = await bcrypt.hash(this.hash, salt);
+  isBusinessOwnner: {
+    type: Boolean,
+    required: true,
+    default: true,
+  },
 });
 
 const User = mongoose.model("User", userSchema);
