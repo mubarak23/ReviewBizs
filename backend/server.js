@@ -5,6 +5,7 @@ import color from "colors";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import connecteDB from "./config/db.js";
+import businessRouter from "./routes/businessRoute.js";
 
 dotenv.config();
 
@@ -18,11 +19,14 @@ if (process.env.NODE_ENV === "dev") {
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use("/api/business", businessRouter);
+
 //First route
 app.get("/", (req, res) => {
   res.send("Api is running");
 });
 
+app.use("/api/buz", businessRouter);
 const PORT = process.env.PORT || 5000;
 
 app.listen(
