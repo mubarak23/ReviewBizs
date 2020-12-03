@@ -1,10 +1,15 @@
 import express from "express";
 import morgan from "morgan";
 import path from "path";
+import color from "colors";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
+import connecteDB from "./config/db.js";
 
 dotenv.config();
+
+//connect to mlab
+connecteDB();
 
 const app = express();
 if (process.env.NODE_ENV === "dev") {
