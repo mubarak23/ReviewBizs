@@ -5,7 +5,7 @@ import { businessListReducer } from "./reducers/businessReducers.js";
 
 const initialState = {};
 const reducer = combineReducers({
-  businessLists: businessListReducer,
+  businessList: businessListReducer,
 });
 const middleware = [thunk];
 
