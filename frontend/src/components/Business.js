@@ -5,11 +5,11 @@ import businesses from "../business";
 const Business = ({ business }) => {
   return (
     <Card className="y-3 py-3 rounded">
-      <a href={`/business/${businesses._id}`}>
+      <a href={`/business/${business._id}`}>
         <Card.Img src={business.image} variant="top" />
       </a>
       <Card.Body>
-        <a href={`/business/${businesses._id}`}>
+        <a href={`/business/${business._id}`}>
           <Card.Title as="div">
             <strong>{business.name}</strong>
           </Card.Title>

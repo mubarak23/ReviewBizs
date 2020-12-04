@@ -4,7 +4,7 @@ import {
   BUSINESS_LIST_FAIL,
 } from "../constants/businessConstant.js";
 
-export const businessListReducer = (state = { products: [] }, action) => {
+export const businessListReducer = (state = { businesses: [] }, action) => {
   switch (action.type) {
     case BUSINESS_LIST_REQUEST:
       return { loading: true, businesses: {} };
