@@ -6,6 +6,7 @@ import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import connecteDB from "./config/db.js";
 import businessRouter from "./routes/businessRoute.js";
+import userRouter from "./routes/userRoute.js";
 
 dotenv.config();
 
@@ -20,6 +21,7 @@ app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use("/api/business", businessRouter);
+app.use("/api/user", userRouter);
 
 //First route
 app.get("/", (req, res) => {
