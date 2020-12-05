@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { business_details } from "../actions/businessActions.js";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import Message from "../components/Message.js";
 import Loader from "../components/Loader.js";
-import { business_details } from "../actions/businessActions.js";
-import { useSelector, useDispatch } from "react-redux";
 import {
   Row,
   Col,
@@ -14,7 +14,7 @@ import {
   Form,
 } from "react-bootstrap";
 
-const BusinessScreen = ({ history, match }) => {
+const BusinessScreens = ({ match }) => {
   const dispatch = useDispatch();
   const businessDetail = useSelector((state) => state.businessDetails);
   const { loading, error, business } = businessDetail;
@@ -23,7 +23,6 @@ const BusinessScreen = ({ history, match }) => {
     console.log("this is the first point of dispatch");
     dispatch(business_details(match.params.id));
   }, [dispatch]);
-
   return (
     <>
       <Link to="/">Back</Link>
@@ -64,4 +63,4 @@ const BusinessScreen = ({ history, match }) => {
   );
 };
 
-export default BusinessScreen;
+export default BusinessScreens;
