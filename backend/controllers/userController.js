@@ -1,5 +1,6 @@
 import asyncHandler from "express-async-handler";
-import Business from "../models/userModel.js";
+import User from "../models/userModel.js";
+import generateToken from "../utils/generateToken.js";
 
 // @desc    Register a new user
 // @route   POST /api/users
