@@ -52,7 +52,7 @@ export const auth_login = ({ email, password }) => async (dispatch) => {
       },
     };
     const { data } = await axios.post(
-      "/api/user/login",
+      "http://127.0.0.1:5000/api/user/login",
       { email, password },
       config
     );
@@ -62,12 +62,6 @@ export const auth_login = ({ email, password }) => async (dispatch) => {
     });
     localStorage.setItem("userInfo", JSON.stringify(data));
   } catch (error) {
-    dispatch({
-      type: USER_LOGIN_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.response.message,
-    });
+    console.log(error);
   }
 };

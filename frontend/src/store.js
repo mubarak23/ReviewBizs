@@ -10,7 +10,7 @@ import {
   userRegisterReducer,
   userLoginReducer,
 } from "./reducers/userReducer.js";
-const initialState = {};
+
 const reducer = combineReducers({
   businessList: businessListReducer,
   businessDetails: businessDetailsReducer,
