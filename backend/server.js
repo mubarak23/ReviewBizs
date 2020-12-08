@@ -17,6 +17,7 @@ const app = express();
 if (process.env.NODE_ENV === "dev") {
   app.use(morgan("dev"));
 }
+
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true }));
 
