@@ -2,6 +2,7 @@ import axios from "axios";
 import {
   USER_LOGIN_REQUEST,
   USER_LOGIN_SUCCESS,
+  USER_LOGIN_FAIL,
   USER_REGISTER_REQUEST,
   USER_REGISTER_SUCCESS,
   USER_REGISTER_FAIL,
@@ -40,7 +41,7 @@ export const auth_register = ({ name, email, password }) => async (
   }
 };
 
-export const auth_login = ({ email, password }) => async (dispatch) => {
+export const auth_login = (email, password) => async (dispatch) => {
   try {
     dispatch({
       type: USER_LOGIN_REQUEST,
@@ -48,10 +49,10 @@ export const auth_login = ({ email, password }) => async (dispatch) => {
     const config = {
       headers: {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
       },
     };
     console.log("Before Making Request");
+    console.log(email);
     const { data } = await axios.post(
       "http://localhost:5000/api/user/login",
       { email, password },

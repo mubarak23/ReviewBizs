@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
 import FormContainer from "../components/FormContainer";
-import { auth_login } from "../actions/userAction";
+import { auth_login, login } from "../actions/userAction";
 //import { userLoginReducer } from "../reducers/userReducers.js";
 
 const LoginScreen = ({ location, history }) => {
