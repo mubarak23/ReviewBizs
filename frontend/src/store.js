@@ -4,6 +4,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import {
   businessListReducer,
   businessDetailsReducer,
+  businessCreateReviewReducer,
 } from "./reducers/businessReducers.js";
 
 import {
@@ -14,6 +15,7 @@ import {
 const reducer = combineReducers({
   businessList: businessListReducer,
   businessDetails: businessDetailsReducer,
+  createReview: businessCreateReviewReducer,
 
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,

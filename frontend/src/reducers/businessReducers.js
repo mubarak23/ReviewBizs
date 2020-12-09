@@ -5,6 +5,10 @@ import {
   BUSINESS_DETAILS_REQUEST,
   BUSINESS_DETAILS_SUCCESS,
   BUSINESS_DETAILS_FAIL,
+  CREATE_REVIEW_REQUEST,
+  CREATE_REIVIEW_SUCCESS,
+  CREATE_REVIEW_FAIL,
+  CREATE_REVIEW_RESET,
 } from "../constants/businessConstant.js";
 
 export const businessListReducer = (state = { businesses: [] }, action) => {
@@ -29,8 +33,23 @@ export const businessDetailsReducer = (
       return { loading: true, ...state };
     case BUSINESS_DETAILS_SUCCESS:
       return { loading: false, business: action.payload };
-    case BUSINESS_LIST_FAIL:
+    case BUSINESS_DETAILS_FAIL:
       return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+export const businessCreateReviewReducer = (state = {}, action) => {
+  switch (action.type) {
+    case CREATE_REVIEW_REQUEST:
+      return { loading: true };
+    case CREATE_REIVIEW_SUCCESS:
+      return { loading: false, success: true };
+    case CREATE_REVIEW_FAIL:
+      return { loading: false, error: action.payload };
+    case CREATE_REVIEW_RESET:
+      return {};
     default:
       return state;
   }
