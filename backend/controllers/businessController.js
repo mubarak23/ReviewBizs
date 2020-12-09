@@ -24,4 +24,32 @@ const getBusinessById = asyncHandler(async (req, res) => {
   }
 });
 
+// @desc    Get business Details
+// @route   GET /api/business/:id
+// @access  Public
+
+const createBusinessReview = asyncHandler(async (req, res) => {
+  const { name, email, rating, comment } = req.body;
+  const business = await Business.findById(req.params.id);
+  if (business) {
+    const review = {
+      name,
+      email,
+      comment,
+      rating,
+    };
+    console.log(review);
+    business.reviews.push(review);
+    business.rating =
+      business.reviews.reduce((acc, item) => item.rating + acc, 0) /
+      business.reviews.length;
+    business.numReviews = business.reviews.length;
+    await business.save();
+    res.status(201).json({ message: "Review Added" });
+  } else {
+    res.status(404);
+    throw new Error("Business not found");
+  }
+});
+
 export { getAllBusiness, getBusinessById };

@@ -5,10 +5,10 @@ const reviewSchema = mongoose.Schema({
   name: { type: String, required: true },
   rating: { type: Number, required: true },
   comment: { type: String, required: true },
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
+  email: {
+    type: String,
     required: true,
-    ref: "User",
+    unique: true,
   },
 });
 
@@ -33,6 +33,11 @@ const businessSchema = {
   category: {
     type: String,
     required: true,
+  },
+  numReviews: {
+    type: Number,
+    required: true,
+    default: 0,
   },
   reviews: [reviewSchema],
   rating: {
