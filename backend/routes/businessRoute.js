@@ -9,6 +9,6 @@ import {
 router.route("/").get(getAllBusiness);
 //.post(protect, admin, createProduct);
 router.route("/:id").get(getBusinessById);
-router.route("/:id/reviews").options(createBusinessReview);
+router.route("/:id/reviews").post(createBusinessReview);
 
 export default router;
