@@ -24,8 +24,8 @@ const getBusinessById = asyncHandler(async (req, res) => {
   }
 });
 
-// @desc    Get business Details
-// @route   GET /api/business/:id
+// @desc    Post business review
+// @route   POST /api/business/:id/review
 // @access  Public
 
 const createBusinessReview = asyncHandler(async (req, res) => {
@@ -52,4 +52,4 @@ const createBusinessReview = asyncHandler(async (req, res) => {
   }
 });
 
-export { getAllBusiness, getBusinessById };
+export { getAllBusiness, getBusinessById, createBusinessReview };
