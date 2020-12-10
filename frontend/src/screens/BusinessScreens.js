@@ -18,6 +18,8 @@ import {
 const BusinessScreens = ({ match }) => {
   const [rating, setRating] = useState("");
   const [comment, setComment] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const dispatch = useDispatch();
   console.log(match.params.id);
   const businessDetail = useSelector((state) => state.businessDetails);
@@ -33,8 +35,11 @@ const BusinessScreens = ({ match }) => {
     //dispatch(business_details("5fcf0fd5795f190fa34c362b"));
     dispatch(business_details(match.params.id));
   }, [dispatch, match]);
-  const submitHandler = () => {
+  const submitHandler = (e) => {
+    e.preventDefault();
     console.log("This is the first add review");
+    const data = { name, email, rating, comment };
+    console.log(data);
   };
   return (
     <>
@@ -60,6 +65,7 @@ const BusinessScreens = ({ match }) => {
                 <ListGroup.Item>
                   Description: {business.description}
                 </ListGroup.Item>
+                <ListGroup.Item>Category: {business.category}</ListGroup.Item>
               </ListGroup>
             </Col>
           </Row>
@@ -87,9 +93,28 @@ const BusinessScreens = ({ match }) => {
                   {errorBusinessReview && (
                     <Message variant="danger">{errorBusinessReview}</Message>
                   )}
-
+                </ListGroup.Item>
+              </ListGroup>
+            </Col>
+            <Col md={6}>
+              <ListGroup>
+                <ListGroup.Item>
                   <Form onSubmit={submitHandler}>
                     <Form.Group controlId="rating">
+                      <Form.Label>Name</Form.Label>
+                      <Form.Control
+                        type="text"
+                        placeholder="Enter Name"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                      ></Form.Control>
+                      <Form.Label>Email Address</Form.Label>
+                      <Form.Control
+                        type="email"
+                        placeholder="Enter Email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                      ></Form.Control>
                       <Form.Label>Rating</Form.Label>
                       <Form.Control
                         as="select"
