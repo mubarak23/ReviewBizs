@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { business_details } from "../actions/businessActions.js";
+import {
+  business_details,
+  createBusinessReview,
+} from "../actions/businessActions.js";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import Message from "../components/Message.js";
@@ -14,6 +17,7 @@ import {
   Button,
   Form,
 } from "react-bootstrap";
+import { CREATE_REVIEW_RESET } from "../constants/businessConstant";
 
 const BusinessScreens = ({ match }) => {
   const [rating, setRating] = useState("");
@@ -32,14 +36,24 @@ const BusinessScreens = ({ match }) => {
     loading: loadingBusinessReview,
   } = BusinessReviewCreate;
   useEffect(() => {
+    if (successBusinessreview) {
+      alert("Review Submitted");
+      setRating(0);
+      setComment("");
+      setEmail("");
+      setName("");
+      dispatch({ type: CREATE_REVIEW_RESET });
+    }
     //dispatch(business_details("5fcf0fd5795f190fa34c362b"));
     dispatch(business_details(match.params.id));
-  }, [dispatch, match]);
+  }, [dispatch, match, successBusinessreview]);
+
   const submitHandler = (e) => {
     e.preventDefault();
     console.log("This is the first add review");
     const data = { name, email, rating, comment };
     console.log(data);
+    dispatch(createBusinessReview(match.params.id, data));
   };
   return (
     <>
