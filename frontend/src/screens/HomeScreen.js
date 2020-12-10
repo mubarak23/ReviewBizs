@@ -4,7 +4,7 @@ import { Row, Col } from "react-bootstrap";
 import Business from "../components/Business";
 import Message from "../components/Message.js";
 import Loader from "../components/Loader.js";
-import { list_business } from "../actions/businessActions.js";
+import { list_business, business_details } from "../actions/businessActions.js";
 //import businesses from "../business";
 
 const HomeScreen = () => {
@@ -13,6 +13,7 @@ const HomeScreen = () => {
   const { loading, error, businesses } = businessLists;
   console.log(businesses);
   useEffect(() => {
+    dispatch(business_details("5fcf0fd5795f190fa34c362b"));
     dispatch(list_business());
   }, [dispatch]);
 

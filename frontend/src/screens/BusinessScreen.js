@@ -22,6 +22,7 @@ const BusinessScreen = ({ history, match }) => {
   useEffect(() => {
     console.log("this is the first point of dispatch");
     dispatch(business_details(match.params.id));
+    dispatch(business_details("5fcf0fd5795f190fa34c362b"));
   }, [dispatch]);
 
   return (

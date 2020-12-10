@@ -6,10 +6,12 @@ import Footer from "./components/Footer";
 import HomeScreen from "./screens/HomeScreen";
 import BusinessScreen from "./screens/BusinessScreen";
 import BusinessScreens from "./screens/BusinessScreens";
+
 import LoginScreen from "./screens/LoginScreen";
 import Home from "./screens/Home";
 
 import "./App.css";
+import TestScreen from "./screens/TestScreen";
 
 const App = () => {
   return (
@@ -18,10 +20,10 @@ const App = () => {
         <Header />
         <main className="py-3">
           <Container>
-            <Route path="/" exact component={HomeScreen} />
-            <Route pat="/user/login" component={LoginScreen} />
-            <Route path="/user/home" component={Home} />
-            <Route path="/business/:id" component={BusinessScreen} />
+            <Route path="/" component={HomeScreen} exact />
+            <Route path="/business/:id" component={BusinessScreens} />
+            <Route path="/home" component={Home} />
+            <Route path="/user/login" component={LoginScreen} />
           </Container>
         </main>
         <Footer />

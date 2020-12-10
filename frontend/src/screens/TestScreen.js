@@ -2,26 +2,19 @@ import React, { useEffect, useState } from "react";
 import { business_details } from "../actions/businessActions.js";
 import { useSelector, useDispatch } from "react-redux";
 
-const Home = ({ match, history }) => {
+const TestScreen = ({ match }) => {
   const dispatch = useDispatch();
   const businessDetail = useSelector((state) => state.businessDetails);
   const { loading, error, business } = businessDetail;
   console.log(business);
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
   useEffect(() => {
-    if (!userInfo) {
-      history.push("/user/login");
-    }
-    console.log("this is the first point of dispatch");
-    dispatch(business_details(match.params.id));
     dispatch(business_details("5fcf0fd5795f190fa34c362b"));
-  }, [dispatch, userInfo, match, history]);
+  }, [dispatch]);
   return (
     <div>
-      <h5>Home for testing useEffect</h5>
+      <h5>checking what useFeect is returning </h5>
     </div>
   );
 };
 
-export default Home;
+export default TestScreen;

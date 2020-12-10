@@ -6,7 +6,7 @@ import {
   BUSINESS_DETAILS_REQUEST,
   BUSINESS_DETAILS_SUCCESS,
   BUSINESS_DETAILS_FAIL,
-  CREATE_REIVIEW_REQUEST,
+  CREATE_REVIEW_REQUEST,
   CREATE_REIVIEW_SUCCESS,
   CREATE_REVIEW_FAIL,
 } from "../constants/businessConstant.js";
@@ -57,7 +57,7 @@ export const createBusinessReview = (businessId, review) => async (
 ) => {
   try {
     dispatch({
-      type: CREATE_REIVIEW_REQUEST,
+      type: CREATE_REVIEW_REQUEST,
     });
 
     const config = {
