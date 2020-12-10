@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import Message from "../components/Message.js";
 import Loader from "../components/Loader.js";
+import Rating from "../components/Rating.js";
 import {
   Row,
   Col,
@@ -32,6 +33,9 @@ const BusinessScreens = ({ match }) => {
     //dispatch(business_details("5fcf0fd5795f190fa34c362b"));
     dispatch(business_details(match.params.id));
   }, [dispatch, match]);
+  const submitHandler = () => {
+    console.log("This is the first add review");
+  };
   return (
     <>
       <Link to="/">Back</Link>
@@ -110,7 +114,7 @@ const BusinessScreens = ({ match }) => {
                       ></Form.Control>
                     </Form.Group>
                     <Button
-                      disabled={loadingProductReview}
+                      disabled={loadingBusinessReview}
                       type="submit"
                       variant="primary"
                     >
