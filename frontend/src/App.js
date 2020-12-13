@@ -6,7 +6,7 @@ import Footer from "./components/Footer";
 import HomeScreen from "./screens/HomeScreen";
 import BusinessScreen from "./screens/BusinessScreen";
 import BusinessScreens from "./screens/BusinessScreens";
-
+import ProfileScreen from "./screens/ProfileScreen";
 import LoginScreen from "./screens/LoginScreen";
 import Home from "./screens/Home";
 
@@ -23,7 +23,8 @@ const App = () => {
             <Route path="/" component={HomeScreen} exact />
             <Route path="/business/:id" component={BusinessScreens} />
             <Route path="/home" component={Home} />
-            <Route path="/user/login" component={LoginScreen} />
+            <Route path="/login" component={LoginScreen} />
+            <Route path="/profile" component={ProfileScreen} />
           </Container>
         </main>
         <Footer />
