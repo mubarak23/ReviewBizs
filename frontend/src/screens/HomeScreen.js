@@ -13,8 +13,8 @@ const HomeScreen = () => {
   const { loading, error, businesses } = businessLists;
   console.log(businesses);
   useEffect(() => {
-    dispatch(business_details("5fcf0fd5795f190fa34c362b"));
     dispatch(list_business());
+    //dispatch(business_details("5fcf0fd5795f190fa34c362b"));
   }, [dispatch]);
 
   return (
