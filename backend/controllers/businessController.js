@@ -52,4 +52,17 @@ const createBusinessReview = asyncHandler(async (req, res) => {
   }
 });
 
-export { getAllBusiness, getBusinessById, createBusinessReview };
+// @desc    Get All User business
+// @route   POST /api/business
+// @access  Private
+const getUserBusiness = asyncHandler(async (req, res) => {
+  const all_user_business = await Business.find({ user: req.user._id });
+  res.json(all_user_business);
+});
+
+export {
+  getAllBusiness,
+  getBusinessById,
+  createBusinessReview,
+  getUserBusiness,
+};
