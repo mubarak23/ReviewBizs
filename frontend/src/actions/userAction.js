@@ -6,6 +6,9 @@ import {
   USER_REGISTER_REQUEST,
   USER_REGISTER_SUCCESS,
   USER_REGISTER_FAIL,
+  USER_PROFILE_REQUEST,
+  USER_PROFILE_SUCCESS,
+  USER_PROFILE_FAIL,
 } from "../constants/userConstant.js";
 
 export const auth_register = ({ name, email, password }) => async (
@@ -65,6 +68,30 @@ export const auth_login = (email, password) => async (dispatch) => {
       payload: data,
     });
     localStorage.setItem("userInfo", JSON.stringify(data));
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getUserProfile = () => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: USER_PROFILE_REQUEST,
+    });
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+    const { data } = axios.get("/api/user/profile", config);
+    dispatch({
+      type: USER_PROFILE_SUCCESS,
+      payload: data,
+    });
   } catch (error) {
     console.log(error);
   }

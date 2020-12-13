@@ -10,6 +10,7 @@ import {
 import {
   userRegisterReducer,
   userLoginReducer,
+  userProfileReducer,
 } from "./reducers/userReducer.js";
 
 const reducer = combineReducers({
@@ -19,6 +20,7 @@ const reducer = combineReducers({
 
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
+  userProfile: userProfileReducer,
 });
 const userInfoFromStorage = localStorage.getItem("userInfo")
   ? JSON.parse(localStorage.getItem("userInfo"))
