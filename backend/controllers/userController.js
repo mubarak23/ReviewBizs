@@ -1,6 +1,7 @@
 import asyncHandler from "express-async-handler";
 import User from "../models/userModel.js";
 import generateToken from "../utils/generateToken.js";
+import { protect } from "../middleware/authMiddleware.js";
 
 // @desc    Register a new user
 // @route   POST /api/users
@@ -57,4 +58,24 @@ const authUser = asyncHandler(async (req, res) => {
   }
 });
 
-export { authUser, registerUser };
+// @desc    user profile
+// @route   POST /api/users/profile
+// @access  Private
+
+const getUserProfile = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.user._id);
+  if (user) {
+    res.json({
+      _id: user._id,
+      email: user.email,
+      name: user.name,
+      isBusiness: user.isBusinessOwnner,
+      isAdmin: user.isAdmin,
+    });
+  } else {
+    res.status(401);
+    throw new Error("User Not Found");
+  }
+});
+
+export { authUser, registerUser, getUserProfile };
