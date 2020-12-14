@@ -5,6 +5,7 @@ import {
   businessListReducer,
   businessDetailsReducer,
   businessCreateReviewReducer,
+  userBusinessReducer,
 } from "./reducers/businessReducers.js";
 
 import {
@@ -17,6 +18,7 @@ const reducer = combineReducers({
   businessList: businessListReducer,
   businessDetails: businessDetailsReducer,
   createReview: businessCreateReviewReducer,
+  userbusiness: userBusinessReducer,
 
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,

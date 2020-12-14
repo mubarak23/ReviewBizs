@@ -9,6 +9,9 @@ import {
   CREATE_REVIEW_REQUEST,
   CREATE_REIVIEW_SUCCESS,
   CREATE_REVIEW_FAIL,
+  USER_BUSINESS_REQUEST,
+  USER_BUSINESS_SUCCESS,
+  USER_BUSINESS_FAIL,
 } from "../constants/businessConstant.js";
 
 export const list_business = () => async (dispatch) => {
@@ -79,6 +82,36 @@ export const createBusinessReview = (businessId, review) => async (
   } catch (error) {
     dispatch({
       type: CREATE_REVIEW_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const getUserBusiness = () => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: USER_BUSINESS_REQUEST,
+    });
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+    const { data } = await axios.get("/api/business/mybusiness", config);
+    dispatch({
+      type: USER_BUSINESS_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: USER_BUSINESS_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

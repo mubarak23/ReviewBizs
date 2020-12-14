@@ -9,6 +9,9 @@ import {
   CREATE_REIVIEW_SUCCESS,
   CREATE_REVIEW_FAIL,
   CREATE_REVIEW_RESET,
+  USER_BUSINESS_REQUEST,
+  USER_BUSINESS_SUCCESS,
+  USER_BUSINESS_FAIL,
 } from "../constants/businessConstant.js";
 
 export const businessListReducer = (state = { businesses: [] }, action) => {
@@ -50,6 +53,19 @@ export const businessCreateReviewReducer = (state = {}, action) => {
       return { loading: false, error: action.payload };
     case CREATE_REVIEW_RESET:
       return {};
+    default:
+      return state;
+  }
+};
+
+export const userBusinessReducer = (state = { businesses: [] }, action) => {
+  switch (action.type) {
+    case USER_BUSINESS_REQUEST:
+      return { loading: true, businesses: {} };
+    case USER_BUSINESS_SUCCESS:
+      return { loading: false, businesses: action.payload };
+    case USER_BUSINESS_FAIL:
+      return { loading: false, error: action.payload };
     default:
       return state;
   }

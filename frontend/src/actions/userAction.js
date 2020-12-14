@@ -101,7 +101,7 @@ export const getUserProfile = () => async (dispatch, getState) => {
   }
 };
 
-export const updateUserProfile = () => async (dispatch, getState) => {
+export const updateUserProfile = (user) => async (dispatch, getState) => {
   try {
     dispatch({
       type: USER_UPDATE_PROFILE_REQUEST,
