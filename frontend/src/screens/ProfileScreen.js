@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
-import { getUserProfile } from "../actions/userAction.js";
+import { getUserProfile, updateUserProfile } from "../actions/userAction.js";
 import { getUserBusiness } from "../actions/businessActions.js";
 //import businesses from "../../../backend/data/business";
 const ProfileScreen = ({ history }) => {
@@ -13,6 +13,7 @@ const ProfileScreen = ({ history }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [message, setMessage] = useState("");
 
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
@@ -29,12 +30,10 @@ const ProfileScreen = ({ history }) => {
     businesses,
   } = mybusiness;
 
-  console.log(businesses);
+  const userUpdateProfile = useSelector((state) => state.updateuserProfile);
+  const { success } = userUpdateProfile;
 
-  const submitHandler = (e) => {
-    e.preventDefault();
-    console.log("this is the first point of contact");
-  };
+  console.log(businesses);
 
   useEffect(() => {
     if (!userInfo) {
@@ -48,11 +47,23 @@ const ProfileScreen = ({ history }) => {
     console.log("this is the point after dispatch is called");
   }, [userInfo, history, dispatch]);
 
+  const submitHandler = (e) => {
+    e.preventDefault();
+    console.log("this is the first point of contact");
+    if (password != confirmPassword) {
+      setMessage("Password does not match");
+    } else {
+      dispatch(updateUserProfile({ id: user._id, name, email, password }));
+    }
+  };
+
   return (
     <Row>
       <Col md={4}>
         <h2>User Profile</h2>
-
+        {message && <Message variant="danger">{message}</Message>}
+        {error && <Message variant="danger">{error}</Message>}
+        {success && <Message variant="success">Profile Updated</Message>}
         {loading && <Loader />}
         <Form onSubmit={submitHandler}>
           <Form.Group controlId="name">
