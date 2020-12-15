@@ -60,6 +60,21 @@ const getUserBusiness = asyncHandler(async (req, res) => {
   res.json(all_user_business);
 });
 
+// @desc    Create business
+// @route   POST /api/business
+// @access  Private
+
+const createBusiness = asyncHandler(async (req, res) => {
+  const business = new Business({
+    name: "Sample Business",
+    image: "/images/alexa.jpg",
+    description: "This is the first description description description",
+    category: "Category Sample",
+  });
+  const create_business = await business.save();
+  res.json(create_business);
+});
+
 export {
   getAllBusiness,
   getBusinessById,
