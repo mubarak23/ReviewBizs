@@ -80,4 +80,5 @@ export {
   getBusinessById,
   createBusinessReview,
   getUserBusiness,
+  createBusiness,
 };
