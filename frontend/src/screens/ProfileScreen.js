@@ -112,7 +112,16 @@ const ProfileScreen = ({ history }) => {
         </Form>
       </Col>
       <Col md={8}>
-        <h2>My Business</h2>
+        <Row className="align-items-center">
+          <Col>
+            <h2>My Business</h2>
+          </Col>
+          <Col className="text-right">
+            <Button className="my-3">
+              <i className="fas fa-plus"></i> Add Business
+            </Button>
+          </Col>
+        </Row>
         {loadingbusiness ? (
           <Loader />
         ) : errorbusiness ? (

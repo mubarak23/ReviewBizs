@@ -6,6 +6,7 @@ import {
   businessDetailsReducer,
   businessCreateReviewReducer,
   userBusinessReducer,
+  businessCreateReducer,
 } from "./reducers/businessReducers.js";
 
 import {
@@ -20,6 +21,7 @@ const reducer = combineReducers({
   businessDetails: businessDetailsReducer,
   createReview: businessCreateReviewReducer,
   userbusiness: userBusinessReducer,
+  createBusiness: businessCreateReducer,
 
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,

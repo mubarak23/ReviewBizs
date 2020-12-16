@@ -12,6 +12,10 @@ import {
   USER_BUSINESS_REQUEST,
   USER_BUSINESS_SUCCESS,
   USER_BUSINESS_FAIL,
+  CREATE_BUSINESS_REQUEST,
+  CREATE_BUSINESS_RESET,
+  CREATE_BUSINESS_SUCCESS,
+  CREATE_BUSINESS_FAIL,
 } from "../constants/businessConstant.js";
 
 export const businessListReducer = (state = { businesses: [] }, action) => {
@@ -66,6 +70,21 @@ export const userBusinessReducer = (state = { businesses: [] }, action) => {
       return { loading: false, businesses: action.payload };
     case USER_BUSINESS_FAIL:
       return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+export const businessCreateReducer = (state = {}, action) => {
+  switch (action.type) {
+    case CREATE_BUSINESS_REQUEST:
+      return { loading: true };
+    case CREATE_BUSINESS_SUCCESS:
+      return { loading: false, success: true, business: action.payload };
+    case CREATE_BUSINESS_FAIL:
+      return { loading: false, error: action.payload };
+    case CREATE_BUSINESS_RESET:
+      return {};
     default:
       return state;
   }

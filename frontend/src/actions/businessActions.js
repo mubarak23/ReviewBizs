@@ -12,6 +12,8 @@ import {
   USER_BUSINESS_REQUEST,
   USER_BUSINESS_SUCCESS,
   USER_BUSINESS_FAIL,
+  CREATE_BUSINESS_REQUEST,
+  CREATE_BUSINESS_FAIL,
 } from "../constants/businessConstant.js";
 
 export const list_business = () => async (dispatch) => {
@@ -82,6 +84,39 @@ export const createBusinessReview = (businessId, review) => async (
   } catch (error) {
     dispatch({
       type: CREATE_REVIEW_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const createBusiness = () => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: CREATE_BUSINESS_REQUEST,
+    });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+
+    const { data } = await axios.post(`/api/business/`, {}, config);
+
+    dispatch({
+      type: CREATE_REIVIEW_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: CREATE_BUSINESS_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
