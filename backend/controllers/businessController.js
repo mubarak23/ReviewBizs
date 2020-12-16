@@ -70,6 +70,7 @@ const createBusiness = asyncHandler(async (req, res) => {
     image: "/images/alexa.jpg",
     description: "This is the first description description description",
     category: "Category Sample",
+    user: req.user._id,
   });
   const create_business = await business.save();
   res.json(create_business);

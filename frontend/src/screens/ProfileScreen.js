@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
 import { getUserProfile, updateUserProfile } from "../actions/userAction.js";
-import { getUserBusiness } from "../actions/businessActions.js";
+import { getUserBusiness, createBusiness } from "../actions/businessActions.js";
 //import businesses from "../../../backend/data/business";
 const ProfileScreen = ({ history }) => {
   const [name, setName] = useState("");
@@ -35,6 +35,14 @@ const ProfileScreen = ({ history }) => {
 
   console.log(businesses);
 
+  const businessCreate = useSelector((state) => state.createBusiness);
+  const {
+    loading: loadingCreate,
+    error: errorCreate,
+    success: successCreate,
+    business: createdProduct,
+  } = businessCreate;
+
   useEffect(() => {
     if (!userInfo) {
       history.push("/login");
@@ -45,7 +53,7 @@ const ProfileScreen = ({ history }) => {
     setName(user.name);
     setEmail(user.email);
     console.log("this is the point after dispatch is called");
-  }, [userInfo, history, dispatch]);
+  }, [userInfo, history, dispatch, successCreate, createdProduct]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -55,6 +63,13 @@ const ProfileScreen = ({ history }) => {
     } else {
       dispatch(updateUserProfile({ id: user._id, name, email, password }));
     }
+  };
+
+  const createBusinessHandler = (e) => {
+    e.preventDefault();
+    console.log("create business action called");
+    dispatch(createBusiness());
+    console.log("Create Business Action executed");
   };
 
   return (
@@ -117,11 +132,13 @@ const ProfileScreen = ({ history }) => {
             <h2>My Business</h2>
           </Col>
           <Col className="text-right">
-            <Button className="my-3">
+            <Button className="my-3" onClick={createBusinessHandler}>
               <i className="fas fa-plus"></i> Add Business
             </Button>
           </Col>
         </Row>
+        {loadingCreate && <Loader />}
+        {errorCreate && <Message variant="danger">{errorCreate}</Message>}
         {loadingbusiness ? (
           <Loader />
         ) : errorbusiness ? (

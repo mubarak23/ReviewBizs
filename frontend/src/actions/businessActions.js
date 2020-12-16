@@ -108,7 +108,7 @@ export const createBusiness = () => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.post(`/api/business/`, {}, config);
+    const { data } = await axios.post(`/api/business`, {}, config);
 
     dispatch({
       type: CREATE_REIVIEW_SUCCESS,

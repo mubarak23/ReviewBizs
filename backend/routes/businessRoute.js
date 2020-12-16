@@ -9,12 +9,9 @@ import {
 } from "../controllers/businessController.js";
 import { protect } from "../middleware/authMiddleware.js";
 
-router.route("/").get(getAllBusiness);
+router.route("/").get(getAllBusiness).post(protect, createBusiness);
 //.post(protect, admin, createProduct);
-router
-  .route("/mybusiness")
-  .get(protect, getUserBusiness)
-  .post(protect, createBusiness);
+router.route("/mybusiness").get(protect, getUserBusiness);
 router.route("/:id").get(getBusinessById);
 router.route("/:id/reviews").post(createBusinessReview);
 
