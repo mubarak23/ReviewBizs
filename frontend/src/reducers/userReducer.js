@@ -13,6 +13,8 @@ import {
   USER_UPDATE_PROFILE_REQUEST,
   USER_UPDATE_PROFILE_SUCCESS,
   USER_UPDATE_PROFILE_FAIL,
+  USER_LISTS_REQUEST,
+  USER_LISTS_SCCESS,
 } from "../constants/userConstant.js";
 
 export const userRegisterReducer = (state = {}, action) => {
@@ -67,6 +69,19 @@ export const userUpdateProfileReducer = (state = { user: {} }, action) => {
       return { loading: false, success: true, userInfo: action.payload };
 
     case USER_UPDATE_PROFILE_FAIL:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+export const userListsReducer = (state = { users: [] }, action) => {
+  switch (action.type) {
+    case USER_LISTS_REQUEST:
+      return { loading: true, users: {} };
+    case USER_LISTS_SCCESS:
+      return { loading: false, users: action.payload };
+    case USER_LISTS_FAIL:
       return { loading: false, error: action.payload };
     default:
       return state;

@@ -12,6 +12,9 @@ import {
   USER_UPDATE_PROFILE_REQUEST,
   USER_UPDATE_PROFILE_SUCCESS,
   USER_UPDATE_PROFILE_FAIL,
+  USER_LISTS_REQUEST,
+  USER_LISTS_SCCESS,
+  USER_LISTS_FAIL,
 } from "../constants/userConstant.js";
 
 export const auth_register = ({ name, email, password }) => async (
@@ -123,6 +126,37 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
   } catch (error) {
     dispatch({
       type: USER_UPDATE_PROFILE_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.response.message,
+    });
+  }
+};
+
+export const getUserLists = () => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: USER_LISTS_REQUEST,
+    });
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+    const { data } = await axios.get("/api/users", config);
+    console.log(data);
+    dispatch({
+      type: USER_LISTS_SCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: USER_LISTS_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
