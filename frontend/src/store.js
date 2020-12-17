@@ -14,6 +14,7 @@ import {
   userLoginReducer,
   userProfileReducer,
   userUpdateProfileReducer,
+  userListsReducer,
 } from "./reducers/userReducer.js";
 
 const reducer = combineReducers({
@@ -27,6 +28,7 @@ const reducer = combineReducers({
   userRegister: userRegisterReducer,
   userProfile: userProfileReducer,
   updateuserProfile: userUpdateProfileReducer,
+  userLists: userListsReducer,
 });
 const userInfoFromStorage = localStorage.getItem("userInfo")
   ? JSON.parse(localStorage.getItem("userInfo"))

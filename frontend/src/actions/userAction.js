@@ -164,3 +164,5 @@ export const getUserLists = () => async (dispatch, getState) => {
     });
   }
 };
+
+export const deleteUser = () => async (dispatch) => {};

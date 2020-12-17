@@ -9,6 +9,7 @@ import BusinessScreens from "./screens/BusinessScreens";
 import ProfileScreen from "./screens/ProfileScreen";
 import LoginScreen from "./screens/LoginScreen";
 import Home from "./screens/Home";
+import UserListScreen from "./screens/UserListScreen";
 
 import "./App.css";
 import TestScreen from "./screens/TestScreen";
@@ -25,6 +26,7 @@ const App = () => {
             <Route path="/home" component={Home} />
             <Route path="/login" component={LoginScreen} />
             <Route path="/profile" component={ProfileScreen} />
+            <Route path="/admin/userlist" component={UserListScreen} />
           </Container>
         </main>
         <Footer />
