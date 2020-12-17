@@ -108,7 +108,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
 // @route   GET/api/users
 // @access  Private
 const userlists = asyncHandler(async (req, res) => {
-  const users = User.find({});
+  const users = await User.find({});
   res.json(users);
 });
 

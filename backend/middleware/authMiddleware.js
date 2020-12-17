@@ -36,7 +36,7 @@ const admin = (req, res, next) => {
     //res.status(401);
     //throw new Error("Nott Authorized as Adminn");
     res.status(401);
-    throw new Error("Nott Authorized as Adminn");
+    throw new Error("Nott Authorized as Admin");
   }
 };
 

@@ -15,6 +15,7 @@ import {
   USER_UPDATE_PROFILE_FAIL,
   USER_LISTS_REQUEST,
   USER_LISTS_SCCESS,
+  USER_LISTS_FAIL,
 } from "../constants/userConstant.js";
 
 export const userRegisterReducer = (state = {}, action) => {

@@ -148,7 +148,7 @@ export const getUserLists = () => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    const { data } = await axios.get("/api/users", config);
+    const { data } = await axios.get("/api/user/", config);
     console.log(data);
     dispatch({
       type: USER_LISTS_SCCESS,
