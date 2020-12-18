@@ -16,6 +16,8 @@ import {
   CREATE_BUSINESS_RESET,
   CREATE_BUSINESS_SUCCESS,
   CREATE_BUSINESS_FAIL,
+  ADMIN_BUSINESS_LISTS_SUCCESS,
+  ADMIN_BUSINESS_LISTS_FAIL,
 } from "../constants/businessConstant.js";
 
 export const businessListReducer = (state = { businesses: [] }, action) => {
@@ -85,6 +87,22 @@ export const businessCreateReducer = (state = {}, action) => {
       return { loading: false, error: action.payload };
     case CREATE_BUSINESS_RESET:
       return {};
+    default:
+      return state;
+  }
+};
+
+export const adminBusinessListsReducer = (
+  state = { businesses: [] },
+  action
+) => {
+  switch (action.type) {
+    case ADMIN_BUSINESS_LISTS_REQUEST:
+      return { loading: true, businesses: {} };
+    case ADMIN_BUSINESS_LISTS_SUCCESS:
+      return { loading: false, businesses: action.payload };
+    case ADMIN_BUSINESS_LISTS_FAIL:
+      return { loading: false, error: action.payload };
     default:
       return state;
   }
