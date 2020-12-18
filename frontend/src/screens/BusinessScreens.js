@@ -26,6 +26,7 @@ const BusinessScreens = ({ match }) => {
   const [email, setEmail] = useState("");
   const dispatch = useDispatch();
   console.log(match.params.id);
+  const id = match.params.id;
   const businessDetail = useSelector((state) => state.businessDetails);
   const { loading, error, business } = businessDetail;
   console.log(business);
@@ -45,8 +46,10 @@ const BusinessScreens = ({ match }) => {
       dispatch({ type: CREATE_REVIEW_RESET });
     }
     //dispatch(business_details("5fcf0fd5795f190fa34c362b"));
-    dispatch(business_details(match.params.id));
-  }, [dispatch, match, successBusinessreview]);
+    console.log("This is before dispatch is called");
+    dispatch(business_details(id));
+    console.log("This is after dispatch is called");
+  }, [dispatch, id, successBusinessreview]);
 
   const submitHandler = (e) => {
     e.preventDefault();
