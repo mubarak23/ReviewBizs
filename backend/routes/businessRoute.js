@@ -6,10 +6,15 @@ import {
   createBusinessReview,
   getUserBusiness,
   createBusiness,
+  Businesslists,
 } from "../controllers/businessController.js";
-import { protect } from "../middleware/authMiddleware.js";
+import { admin, protect } from "../middleware/authMiddleware.js";
 
-router.route("/").get(getAllBusiness).post(protect, createBusiness);
+router
+  .route("/")
+  .get(getAllBusiness)
+  .post(protect, createBusiness)
+  .get(protect, admin, Businesslists);
 //.post(protect, admin, createProduct);
 router.route("/mybusiness").get(protect, getUserBusiness);
 router.route("/:id").get(getBusinessById);

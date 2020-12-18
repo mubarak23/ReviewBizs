@@ -1,4 +1,5 @@
 import asyncHandler from "express-async-handler";
+import BusinessScreens from "../../frontend/src/screens/BusinessScreens.js";
 import Business from "../models/businessModel.js";
 
 // @desc    Fetch all business
@@ -76,10 +77,19 @@ const createBusiness = asyncHandler(async (req, res) => {
   res.json(create_business);
 });
 
+// @desc    Get all business
+// @route   GET /api/business
+// @access  Private
+const Businesslists = asyncHandler(async (req, res) => {
+  const businesses = await Business.find({});
+  res.json(businesses);
+});
+
 export {
   getAllBusiness,
   getBusinessById,
   createBusinessReview,
   getUserBusiness,
   createBusiness,
+  Businesslists,
 };
