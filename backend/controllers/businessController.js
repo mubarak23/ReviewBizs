@@ -112,4 +112,5 @@ export {
   getUserBusiness,
   createBusiness,
   Businesslists,
+  updateBusiness,
 };

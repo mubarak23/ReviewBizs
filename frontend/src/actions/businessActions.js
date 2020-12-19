@@ -17,6 +17,8 @@ import {
   ADMIN_BUSINESS_LISTS_REQUEST,
   ADMIN_BUSINESS_LISTS_SUCCESS,
   ADMIN_BUSINESS_LISTS_FAIL,
+  UPDATE_BUSINESS_REQUEST,
+  UPDATE_BUSINESS_SUCCESS,
 } from "../constants/businessConstant.js";
 
 export const list_business = () => async (dispatch) => {
@@ -120,6 +122,40 @@ export const createBusiness = () => async (dispatch, getState) => {
   } catch (error) {
     dispatch({
       type: CREATE_BUSINESS_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const updateBusiness = (business) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: UPDATE_BUSINESS_REQUEST,
+    });
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+    const { data } = await axios.put(
+      `/api/business/${business.id}`,
+      business,
+      config
+    );
+    dispatch({
+      type: UPDATE_BUSINESS_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: UPDATE_BUSINESS_SUCCESS,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
