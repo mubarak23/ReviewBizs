@@ -51,6 +51,16 @@ const BusinessEditScreen = ({ history, match }) => {
   const submitHandle = (e) => {
     e.preventDefault();
     console.log("this is the first hit here");
+    dispatch(
+      updateBusiness({
+        _id: businessId,
+        name,
+        image,
+        category,
+        description,
+      })
+    );
+    console.log("After update business action");
   };
 
   const uploadFileHandler = (e) => {

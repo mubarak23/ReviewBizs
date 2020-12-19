@@ -90,7 +90,7 @@ const Businesslists = asyncHandler(async (req, res) => {
 // @route   PUT /api/business
 // @access  Private
 const updateBusiness = asyncHandler(async (req, res) => {
-  const { name, image, description, category } = req.body();
+  const { name, image, description, category } = req.body;
   const business = await Business.findById(req.params.id);
   if (business) {
     business.name = name;

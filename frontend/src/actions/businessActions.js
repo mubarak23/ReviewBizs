@@ -145,7 +145,7 @@ export const updateBusiness = (business) => async (dispatch, getState) => {
       },
     };
     const { data } = await axios.put(
-      `/api/business/${business.id}`,
+      `/api/business/${business._id}`,
       business,
       config
     );

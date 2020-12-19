@@ -27,6 +27,7 @@ const reducer = combineReducers({
   createBusiness: businessCreateReducer,
   adminBusinessLists: adminBusinessListsReducer,
   UpdateBusiness: UpdateBusinessReducer,
+
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
   userProfile: userProfileReducer,
