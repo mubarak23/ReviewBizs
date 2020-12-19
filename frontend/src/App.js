@@ -5,12 +5,13 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import HomeScreen from "./screens/HomeScreen";
 import BusinessScreen from "./screens/BusinessScreen";
-import BusinessScreens from "./screens/BusinessScreens";
+import BusinessScreens from "./screens/BusinessScreens.js";
 import ProfileScreen from "./screens/ProfileScreen";
 import LoginScreen from "./screens/LoginScreen";
 import Home from "./screens/Home";
 import UserListScreen from "./screens/UserListScreen";
-import BusinessListScreen from "./screens/BusinessListScreen";
+import BusinessListScreen from "./screens/BusinessListScreen.js";
+import BusinessEditScreen from "./screens/BusinessEditScreen.js";
 import "./App.css";
 import TestScreen from "./screens/TestScreen";
 
@@ -28,6 +29,10 @@ const App = () => {
             <Route path="/profile" component={ProfileScreen} />
             <Route path="/admin/userlist" component={UserListScreen} />
             <Route path="/admin/businesslist" component={BusinessListScreen} />
+            <Route
+              path="/admin/business/:id/edit"
+              component={BusinessEditScreen}
+            />
           </Container>
         </main>
         <Footer />

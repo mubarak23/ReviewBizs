@@ -1,6 +1,6 @@
 import asyncHandler from "express-async-handler";
-import BusinessScreens from "../../frontend/src/screens/BusinessScreens.js";
-import { protect } from "../middleware/authMiddleware.js";
+//import BusinessScreens from "../../frontend/src/screens/BusinessScreens.js";
+//import { protect } from "../middleware/authMiddleware.js";
 import Business from "../models/businessModel.js";
 
 // @desc    Fetch all business
@@ -112,5 +112,4 @@ export {
   getUserBusiness,
   createBusiness,
   Businesslists,
-  updateBusiness,
 };

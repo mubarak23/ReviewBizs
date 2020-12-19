@@ -7,7 +7,6 @@ import {
   getUserBusiness,
   createBusiness,
   Businesslists,
-  updateBusiness,
 } from "../controllers/businessController.js";
 import { admin, protect } from "../middleware/authMiddleware.js";
 

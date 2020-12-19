@@ -6,10 +6,10 @@ import axios from "axios";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
 import FormContainer from "../components/FormContainer";
-import { business_details, updateBusiness } from "../actions/productAction";
-import { PRODUCT_UPDATE_RESET } from "../constants/productConstants";
+import { business_details, updateBusiness } from "../actions/businessActions";
+import { UPDATE_BUSINESS_RESET } from "../constants/businessConstant";
 
-const businessEditScreen = ({ history, match }) => {
+const BusinessEditScreen = ({ history, match }) => {
   const buusinessId = match.params.id;
   const [name, setName] = useState("");
   const [image, setImage] = useState("");
@@ -19,7 +19,19 @@ const businessEditScreen = ({ history, match }) => {
   const dispatch = useDispatch();
   const businessDetail = useSelector((state) => state.businessDetails);
   const { loading, error, business } = businessDetail;
+
+  const UpdateBusiness = useSelector((state) => state.UpdateBusiness);
+  const {
+    loading: loadingUpdate,
+    error: errorUpdate,
+    success: successUpdate,
+  } = UpdateBusiness;
+
   useEffect(() => {
+    if (successUpdate) {
+      dispatch({ type: UPDATE_BUSINESS_RESET });
+      history.push("/admin/businesslist");
+    }
     if (!business.name || business._id !== businessId) {
       dispatch(business_details(productId));
     } else {
@@ -97,4 +109,4 @@ const businessEditScreen = ({ history, match }) => {
   );
 };
 
-export default businessEditScreen;
+export default BusinessEditScreen;

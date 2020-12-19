@@ -1,19 +1,13 @@
 import express from "express";
-//const express = require("express");
-import morgan from "morgan";
-import path from "path";
-import color from "colors";
+import dotenv from "dotenv";
 import cors from "cors";
 import bodyParser from "body-parser";
-import dotenv from "dotenv";
+import color from "colors";
 import connecteDB from "./config/db.js";
 import businessRouter from "./routes/businessRoute.js";
 import userRouter from "./routes/userRoute.js";
-//import uploadRouter from "./routes/uploadRoute.js";
 
 dotenv.config();
-
-//connect to mlab
 connecteDB();
 
 const app = express();
@@ -34,7 +28,7 @@ app.get("/", (req, res) => {
   res.send("Api is running");
 });
 
-app.use("/api/buz", businessRouter);
+//app.use("/api/buz", businessRouter);
 const PORT = process.env.PORT || 5000;
 
 app.listen(
