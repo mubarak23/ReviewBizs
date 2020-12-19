@@ -10,7 +10,7 @@ import { business_details, updateBusiness } from "../actions/businessActions";
 import { UPDATE_BUSINESS_RESET } from "../constants/businessConstant";
 
 const BusinessEditScreen = ({ history, match }) => {
-  const buusinessId = match.params.id;
+  const businessId = match.params.id;
   const [name, setName] = useState("");
   const [image, setImage] = useState("");
   const [category, setCategory] = useState("");
@@ -32,18 +32,25 @@ const BusinessEditScreen = ({ history, match }) => {
       dispatch({ type: UPDATE_BUSINESS_RESET });
       history.push("/admin/businesslist");
     }
-    if (!business.name || business._id !== businessId) {
-      dispatch(business_details(productId));
+
+    if (!business) {
+      console.log("this is the first dispatch");
+      dispatch(business_details(businessId));
+      console.log("this is the final dispatch");
     } else {
       setName(business.name);
       setCategory(business.category);
       setImage(business.image);
       setDescription(business.description);
     }
-  }, [dispatch, business]);
+  }, [dispatch, history, businessId, business, successUpdate]);
+
+  const submitHandle = () => {};
+
+  const uploadFileHandler = (e) => {};
   return (
     <>
-      <Link to="/admin/productlist">Go Back</Link>
+      <Link to="/admin/businesslist">Go Back</Link>
       <FormContainer>
         <h2>Edit Business</h2>
         {loadingUpdate && <Loader />}
@@ -100,7 +107,7 @@ const BusinessEditScreen = ({ history, match }) => {
               </Form.Group>
             </Form.Group>
             <Button type="submit" variant="primary">
-              Update User
+              Update Business
             </Button>
           </form>
         )}
