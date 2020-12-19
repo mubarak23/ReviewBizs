@@ -1,5 +1,6 @@
 import asyncHandler from "express-async-handler";
 import BusinessScreens from "../../frontend/src/screens/BusinessScreens.js";
+import { protect } from "../middleware/authMiddleware.js";
 import Business from "../models/businessModel.js";
 
 // @desc    Fetch all business
@@ -83,6 +84,25 @@ const createBusiness = asyncHandler(async (req, res) => {
 const Businesslists = asyncHandler(async (req, res) => {
   const businesses = await Business.find({});
   res.json(businesses);
+});
+
+// @desc    Update business
+// @route   PUT /api/business
+// @access  Private
+const updateBusiness = asyncHandler(async (req, res) => {
+  const { name, image, description, category } = req.body();
+  const business = await Business.findById(req.params.id);
+  if (business) {
+    business.name = name;
+    business.description = description;
+    business.category = category;
+    business.image = image;
+    const updatebusiness = await business.save();
+    res.json(updatebusiness);
+  } else {
+    res.status(404);
+    throw new Error("Business not found");
+  }
 });
 
 export {
