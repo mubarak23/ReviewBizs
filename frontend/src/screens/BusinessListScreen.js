@@ -8,6 +8,7 @@ import Message from "../components/Message";
 import Loader from "../components/Loader";
 import { getUserLists, deleteUser } from "../actions/userAction";
 import { getBusinessLists } from "../actions/businessActions";
+import { BUSINESS_DETAILS_RESET } from "../constants/businessConstant.js";
 
 const BusinessListScreen = ({ history }) => {
   const dispatch = useDispatch();
@@ -24,6 +25,7 @@ const BusinessListScreen = ({ history }) => {
 
   useEffect(() => {
     if (userInfo && userInfo.isAdmin) {
+      dispatch({ type: BUSINESS_DETAILS_RESET });
       console.log("reach this point");
       dispatch(getBusinessLists());
       console.log("dispatch run");

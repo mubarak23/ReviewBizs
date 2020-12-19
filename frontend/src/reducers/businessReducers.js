@@ -23,6 +23,7 @@ import {
   UPDATE_BUSINESS_SUCCESS,
   UPDATE_BUSINESS_RESET,
   UPDATE_BUSINESS_FAIL,
+  BUSINESS_DETAILS_RESET,
 } from "../constants/businessConstant.js";
 
 export const businessListReducer = (state = { businesses: [] }, action) => {
@@ -49,6 +50,8 @@ export const businessDetailsReducer = (
       return { loading: false, business: action.payload };
     case BUSINESS_DETAILS_FAIL:
       return { loading: false, error: action.payload };
+    case BUSINESS_DETAILS_RESET:
+      return {};
     default:
       return state;
   }

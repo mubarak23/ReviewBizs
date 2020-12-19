@@ -7,7 +7,10 @@ import Message from "../components/Message";
 import Loader from "../components/Loader";
 import FormContainer from "../components/FormContainer";
 import { business_details, updateBusiness } from "../actions/businessActions";
-import { UPDATE_BUSINESS_RESET } from "../constants/businessConstant";
+import {
+  UPDATE_BUSINESS_RESET,
+  BUSINESS_DETAILS_RESET,
+} from "../constants/businessConstant";
 
 const BusinessEditScreen = ({ history, match }) => {
   const businessId = match.params.id;
@@ -32,8 +35,8 @@ const BusinessEditScreen = ({ history, match }) => {
       dispatch({ type: UPDATE_BUSINESS_RESET });
       history.push("/admin/businesslist");
     }
-
     if (!business) {
+      dispatch({ type: BUSINESS_DETAILS_RESET });
       console.log("this is the first dispatch");
       dispatch(business_details(businessId));
       console.log("this is the final dispatch");
@@ -45,9 +48,15 @@ const BusinessEditScreen = ({ history, match }) => {
     }
   }, [dispatch, history, businessId, business, successUpdate]);
 
-  const submitHandle = () => {};
+  const submitHandle = (e) => {
+    e.preventDefault();
+    console.log("this is the first hit here");
+  };
 
-  const uploadFileHandler = (e) => {};
+  const uploadFileHandler = (e) => {
+    e.preventDefault();
+    console.log("this is the first hit here");
+  };
   return (
     <>
       <Link to="/admin/businesslist">Go Back</Link>
