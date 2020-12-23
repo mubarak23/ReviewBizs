@@ -7,7 +7,11 @@ import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
 import { getUserLists, deleteUser } from "../actions/userAction";
-import { getBusinessLists, deleteBusiness } from "../actions/businessActions";
+import {
+  createBusiness,
+  getBusinessLists,
+  deleteBusiness,
+} from "../actions/businessActions";
 import { BUSINESS_DETAILS_RESET } from "../constants/businessConstant.js";
 
 const BusinessListScreen = ({ history }) => {
@@ -21,6 +25,14 @@ const BusinessListScreen = ({ history }) => {
   const userDelete = useSelector((state) => state.deleteBusiness);
   const { success: successDelete } = userDelete;
 
+  const businessCreate = useSelector((state) => state.createBusiness);
+  const {
+    loading: loadingCreate,
+    error: errorCreate,
+    success: successCreate,
+    business: createdBusiness,
+  } = businessCreate;
+
   useEffect(() => {}, [dispatch]);
 
   useEffect(() => {
@@ -32,7 +44,10 @@ const BusinessListScreen = ({ history }) => {
     } else {
       history.push("/login");
     }
-  }, [dispatch, history, userInfo, successDelete]);
+    if (successCreate) {
+      history.push(`/admin/business/${createdBusiness._id}/edit`);
+    }
+  }, [dispatch, history, userInfo, successDelete, successCreate]);
 
   const deleteHandlerSubmit = (id) => {
     console.log(id);
@@ -43,6 +58,9 @@ const BusinessListScreen = ({ history }) => {
   };
   const createBusinessHandler = (e) => {
     e.preventDefault();
+    console.log("create business action called");
+    dispatch(createBusiness());
+    console.log("Create Business Action executed");
   };
 
   return (
@@ -57,6 +75,8 @@ const BusinessListScreen = ({ history }) => {
           </Button>
         </Col>
       </Row>
+      {loadingCreate && <Loader />}
+      {errorCreate && <Message variant="danger">{errorCreate}</Message>}
       {loading ? (
         <Loader />
       ) : error ? (
