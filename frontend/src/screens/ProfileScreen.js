@@ -40,12 +40,16 @@ const ProfileScreen = ({ history }) => {
     loading: loadingCreate,
     error: errorCreate,
     success: successCreate,
-    business: createdProduct,
+    business: createdBusiness,
   } = businessCreate;
 
   useEffect(() => {
     if (!userInfo) {
       history.push("/login");
+    }
+
+    if (successCreate) {
+      history.push(`/admin/business/${createdBusiness._id}/edit`);
     }
     console.log("execution reach this level");
     dispatch(getUserProfile());
@@ -53,7 +57,7 @@ const ProfileScreen = ({ history }) => {
     setName(user.name);
     setEmail(user.email);
     console.log("this is the point after dispatch is called");
-  }, [userInfo, history, dispatch, successCreate, createdProduct]);
+  }, [userInfo, history, dispatch, successCreate, createdBusiness]);
 
   const submitHandler = (e) => {
     e.preventDefault();
