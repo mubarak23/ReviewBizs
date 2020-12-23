@@ -105,6 +105,20 @@ const updateBusiness = asyncHandler(async (req, res) => {
   }
 });
 
+// @desc    Delete business
+// @route   DELETE /api/business
+// @access  Private
+
+const deleteBusiness = asyncHandler(async (req, res) => {
+  const business = await Business.findById(req.params.id);
+  if (business) {
+    await business.remove();
+    res.json({ message: "Business Remove" });
+  } else {
+    res.json("Business Not Found");
+  }
+});
+
 export {
   getAllBusiness,
   getBusinessById,
@@ -113,4 +127,5 @@ export {
   createBusiness,
   Businesslists,
   updateBusiness,
+  deleteBusiness,
 };

@@ -8,6 +8,7 @@ import {
   createBusiness,
   Businesslists,
   updateBusiness,
+  deleteBusiness,
 } from "../controllers/businessController.js";
 import { admin, protect } from "../middleware/authMiddleware.js";
 
@@ -18,7 +19,11 @@ router
   .get(protect, admin, Businesslists);
 //.post(protect, admin, createProduct);
 router.route("/mybusiness").get(protect, getUserBusiness);
-router.route("/:id").get(getBusinessById).put(protect, updateBusiness);
+router
+  .route("/:id")
+  .get(getBusinessById)
+  .put(protect, updateBusiness)
+  .delete(protect, deleteBusiness);
 router.route("/:id/reviews").post(createBusinessReview);
 
 export default router;
