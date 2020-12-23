@@ -19,6 +19,9 @@ import {
   ADMIN_BUSINESS_LISTS_FAIL,
   UPDATE_BUSINESS_REQUEST,
   UPDATE_BUSINESS_SUCCESS,
+  BUSINESS_DELETE_REQUEST,
+  BUSINESS_DELETE_SUCCESS,
+  BUSINESS_DELETE_FAIL,
 } from "../constants/businessConstant.js";
 
 export const list_business = () => async (dispatch) => {
@@ -216,6 +219,36 @@ export const getBusinessLists = () => async (dispatch, getState) => {
   } catch (error) {
     dispatch({
       type: ADMIN_BUSINESS_LISTS_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const deleteBusiness = (id) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: BUSINESS_DELETE_REQUEST,
+    });
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+    const { data } = await axios.delete(`/api/business/${id}`, config);
+    dispatch({
+      type: BUSINESS_DELETE_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: BUSINESS_DELETE_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

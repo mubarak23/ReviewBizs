@@ -24,6 +24,10 @@ import {
   UPDATE_BUSINESS_RESET,
   UPDATE_BUSINESS_FAIL,
   BUSINESS_DETAILS_RESET,
+  BUSINESS_DELETE_REQUEST,
+  BUSINESS_DELETE_SUCCESS,
+  BUSINESS_DELETE_FAIL,
+  BUSINESS_DELETE_RESET,
 } from "../constants/businessConstant.js";
 
 export const businessListReducer = (state = { businesses: [] }, action) => {
@@ -126,6 +130,21 @@ export const adminBusinessListsReducer = (
       return { loading: false, businesses: action.payload };
     case ADMIN_BUSINESS_LISTS_FAIL:
       return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+export const businessdeleteReducer = (state = {}, action) => {
+  switch (action.type) {
+    case BUSINESS_DELETE_REQUEST:
+      return { loading: true };
+    case BUSINESS_DELETE_SUCCESS:
+      return { loading: false, success: true };
+    case BUSINESS_DELETE_FAIL:
+      return { loading: false, error: action.payload };
+    case BUSINESS_DELETE_RESET:
+      return { product: {} };
     default:
       return state;
   }
