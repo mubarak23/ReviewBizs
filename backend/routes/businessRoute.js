@@ -22,8 +22,8 @@ router.route("/mybusiness").get(protect, getUserBusiness);
 router
   .route("/:id")
   .get(getBusinessById)
-  .put(protect, updateBusiness)
-  .delete(protect, deleteBusiness);
+  .delete(protect, deleteBusiness)
+  .put(protect, updateBusiness);
 router.route("/:id/reviews").post(createBusinessReview);
 
 export default router;

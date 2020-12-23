@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
 import { getUserLists, deleteUser } from "../actions/userAction";
-import { getBusinessLists } from "../actions/businessActions";
+import { getBusinessLists, deleteBusiness } from "../actions/businessActions";
 import { BUSINESS_DETAILS_RESET } from "../constants/businessConstant.js";
 
 const BusinessListScreen = ({ history }) => {
@@ -18,8 +18,8 @@ const BusinessListScreen = ({ history }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
-  //const userDelete = useSelector((state) => state.userDelete);
-  //const { success: successDelete } = userDelete;
+  const userDelete = useSelector((state) => state.deleteBusiness);
+  const { success: successDelete } = userDelete;
 
   useEffect(() => {}, [dispatch]);
 
@@ -32,12 +32,13 @@ const BusinessListScreen = ({ history }) => {
     } else {
       history.push("/login");
     }
-  }, [dispatch, history, userInfo]);
+  }, [dispatch, history, userInfo, successDelete]);
 
   const deleteHandlerSubmit = (id) => {
     console.log(id);
     if (window.confirm("Are You Sure")) {
-      dispatch(deleteUser(id));
+      dispatch(deleteBusiness(id));
+      //Cannot DELETE /api/business/5fde214cb7149119511b0cd7
     }
   };
   const createBusinessHandler = (e) => {
@@ -68,7 +69,7 @@ const BusinessListScreen = ({ history }) => {
               <th>NAME</th>
               <th>CATEGORY</th>
               <th>RATING</th>
-              <th></th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>

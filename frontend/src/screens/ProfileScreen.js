@@ -50,19 +50,28 @@ const ProfileScreen = ({ history }) => {
 
     if (successCreate) {
       history.push(`/admin/business/${createdBusiness._id}/edit`);
+    } else {
+      console.log("execution reach this level");
+      dispatch(getUserProfile());
+      dispatch(getUserBusiness());
+      setName(user.name);
+      setEmail(user.email);
+      console.log("this is the point after dispatch is called");
     }
-    console.log("execution reach this level");
-    dispatch(getUserProfile());
-    dispatch(getUserBusiness());
-    setName(user.name);
-    setEmail(user.email);
-    console.log("this is the point after dispatch is called");
-  }, [userInfo, history, dispatch, successCreate, createdBusiness]);
+  }, [
+    dispatch,
+    history,
+    userInfo,
+    user.name,
+    user.email,
+    successCreate,
+    createdBusiness,
+  ]);
 
   const submitHandler = (e) => {
     e.preventDefault();
     console.log("this is the first point of contact");
-    if (password != confirmPassword) {
+    if (password !== confirmPassword) {
       setMessage("Password does not match");
     } else {
       dispatch(updateUserProfile({ id: user._id, name, email, password }));
