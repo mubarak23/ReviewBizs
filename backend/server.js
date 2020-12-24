@@ -9,7 +9,7 @@ import dotenv from "dotenv";
 import connecteDB from "./config/db.js";
 import businessRouter from "./routes/businessRoute.js";
 import userRouter from "./routes/userRoute.js";
-//import uploadRouter from "./routes/uploadRoute.js";
+import uploadRouter from "./routes/uploadRoute.js";
 
 dotenv.config();
 
@@ -27,7 +27,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use("/api/business", businessRouter);
 app.use("/api/user", userRouter);
-//app.use("/api/upload", uploadRouter);
+app.use("/api/upload", uploadRouter);
 
 //First route
 app.get("/", (req, res) => {

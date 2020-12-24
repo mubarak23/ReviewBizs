@@ -48,6 +48,30 @@ const BusinessEditScreen = ({ history, match }) => {
     }
   }, [dispatch, history, businessId, business, successUpdate]);
 
+  const uploadFileHandler = async (e) => {
+    console.log("from uplad product image handler");
+    const file = e.target.files[0];
+    const formData = new FormData();
+    formData.append("image", file);
+    setUploading(true);
+    try {
+      const config = {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      };
+
+      const { data } = await axios.post("/api/upload", formData, config);
+      setImage(data);
+      console.log(image);
+      console.log(data);
+      setUploading(false);
+    } catch (error) {
+      console.error(error);
+      setUploading(false);
+    }
+  };
+
   const submitHandle = (e) => {
     e.preventDefault();
     console.log("this is the first hit here");
@@ -63,10 +87,6 @@ const BusinessEditScreen = ({ history, match }) => {
     console.log("After update business action");
   };
 
-  const uploadFileHandler = (e) => {
-    e.preventDefault();
-    console.log("this is the first hit here");
-  };
   return (
     <>
       <Link to="/admin/businesslist">Go Back</Link>
