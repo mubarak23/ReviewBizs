@@ -22,6 +22,7 @@ import {
   BUSINESS_DELETE_REQUEST,
   BUSINESS_DELETE_SUCCESS,
   BUSINESS_DELETE_FAIL,
+  CREATE_BUSINESS_SUCCESS,
 } from "../constants/businessConstant.js";
 
 export const list_business = () => async (dispatch) => {
@@ -119,7 +120,7 @@ export const createBusiness = () => async (dispatch, getState) => {
     const { data } = await axios.post(`/api/business`, {}, config);
 
     dispatch({
-      type: CREATE_REIVIEW_SUCCESS,
+      type: CREATE_BUSINESS_SUCCESS,
       payload: data,
     });
   } catch (error) {
