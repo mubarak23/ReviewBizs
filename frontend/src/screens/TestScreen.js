@@ -11,6 +11,7 @@ const TestScreen = ({ match }) => {
     //dispatch(business_details("5fcf0fd5795f190fa34c362b"));
     dispatch(business_details(match.params.id));
   }, [dispatch, match]);
+
   return (
     <div>
       <h5>checking what useFeect is returning </h5>

@@ -49,10 +49,18 @@ const BusinessEditScreen = ({ history, match }) => {
   }, [dispatch, history, businessId, business, successUpdate]);
 
   const uploadFileHandler = async (e) => {
+    //{"error":{"message":"Missing required parameter - file"}}
+    //{"error":{"message":"Upload preset must be specified when using unsigned upload"}}
+    //{"error":{"message":"Missing required parameter - file"}}
+    //{"error":{"message":"Missing required parameter - file"}}
+    //{"error":{"message":"Upload preset not found"}}
+    //{"error":{"message":"Upload preset must be specified when using unsigned upload"}}
     console.log("from uplad product image handler");
     const file = e.target.files[0];
     const formData = new FormData();
-    formData.append("image", file);
+    formData.append("file", file);
+    formData.append("upload_preset", "bizReviews");
+    formData.append("cloud_name", "techarewa-com");
     setUploading(true);
     try {
       const config = {
@@ -61,9 +69,12 @@ const BusinessEditScreen = ({ history, match }) => {
         },
       };
 
-      const { data } = await axios.post("/api/upload", formData, config);
-      setImage(data);
-      console.log(image);
+      const { data } = await axios.post(
+        "https://api.cloudinary.com/v1_1/techarewa-com/image/upload/",
+        formData,
+        config
+      );
+      setImage(data.url);
       console.log(data);
       setUploading(false);
     } catch (error) {
